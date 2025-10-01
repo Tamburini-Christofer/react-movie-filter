@@ -1,5 +1,4 @@
-import { useState,useEffect } from 'react'
-
+import { useState, useEffect } from 'react'
 import './App.css'
 
 const initialMovies = [
@@ -13,28 +12,98 @@ const initialMovies = [
 ];
 
 function App() {
+  const [movies, setMovies] = useState(initialMovies);
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState(initialMovies);
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const [movies, setMovies] = useState(initialMovies);
-    const [selectedGenre, setSelectedGenre] = useState("");
-    const [filteredMovies, setFilteredMovies] = useState(initialMovies);
-    const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    const result = movies
+      .filter((movie) => !selectedGenre || movie.genre === selectedGenre)
+      .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  useEffect(()=>{
-        const result = movies
-        .filter ((movie)=> !selectedGenre || movie.genre === selectedGenre)
+    setFilteredMovies(result);
+  }, [movies, selectedGenre, searchTerm]);
 
-        .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase())  
-     );
-     setFilteredMovies(result);
+  const handleAddMovie = (e) => {
+    e.preventDefault();
 
-     },[movies, selectedGenre, searchTerm]);
+    const title = e.target.title.value.trim();
+    const genre = e.target.genre.value.trim();
 
+    if (title && genre) {
+      setMovies([...movies, { title, genre }]);
+    }
+
+    e.target.reset();
+  };
 
   return (
     <>
+      <div>
+        <h1>Filtra i tuoi film!!</h1>
 
+
+        <div className ="containerGeneral">
+          <label>Seleziona un genere: </label>
+          <select
+            className="selettore"
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
+            <option value="">Tutti</option>
+            <option value="Fantascienza">Fantascienza</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Romantico">Romantico</option>
+            <option value="Azione">Azione</option>
+            <option value="Storico">Storico</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Cerca per titolo: </label>
+          <input
+            type="text"
+            className="form"
+            placeholder="Scrivi un titolo"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <form onSubmit={handleAddMovie}>
+          <div>
+            <input
+              name="title"
+              className="contoll"
+              placeholder="Titolo film"
+            />
+          </div>
+          <div>
+            <input
+              name="genre"
+              className="contoll"
+              placeholder="Genere film"
+            />
+          </div>
+          <button type="submit">Aggiungi</button>
+        </form>
+        
+        <listaFilm movies={filteredMovies} />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+function listaFilm({ movies }) {
+  return (
+    <ul>
+      {movies.map((movie, index) => (
+        <li key={index}>
+          {movie.title} - <em>{movie.genre}</em>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default App;
