@@ -1,43 +1,39 @@
 import { useState, useEffect } from "react";
 import ListaFilm from "./components/ListaFilm";
 import "./App.css";
-
-const initialMovies = [
-  { title: "Inception", genre: "Fantascienza" },
-  { title: "Il Padrino", genre: "Thriller" },
-  { title: "Titanic", genre: "Romantico" },
-  { title: "Batman", genre: "Azione" },
-  { title: "Interstellar", genre: "Fantascienza" },
-  { title: "Pulp Fiction", genre: "Thriller" },
-  { title: "Barry Lyndon", genre: "Storico" },
-];
+import initialMovies from "./listaFilmArray";
 
 function App() {
   const [movies, setMovies] = useState(initialMovies);
   const [selectedGenre, setSelectedGenre] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(initialMovies);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchYear, setSearchYear] = useState("");
 
-  useEffect(() => {
-    const result = movies
-      .filter((movie) => !selectedGenre || movie.genre === selectedGenre)
-      .filter(
-        (movie) =>
-          !searchTerm ||
-          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
+useEffect(() => {
+  const result = movies
+    .filter((movie) => !selectedGenre || movie.genre === selectedGenre)
+    .filter(
+      (movie) =>
+        !searchTitle ||
+        movie.title.toLowerCase().includes(searchTitle.toLowerCase())
+    )
+    .filter(
+      (movie) =>
+        !searchYear || movie.year.toString().includes(searchYear)
+    );
     setFilteredMovies(result);
-  }, [movies, selectedGenre, searchTerm]);
+  }, [movies, selectedGenre, searchTitle, searchYear]);
 
   const handleAddMovie = (e) => {
     e.preventDefault();
 
     const title = e.target.title.value.trim();
     const genre = e.target.genre.value.trim();
+    const year = e.target.year.value.trim();
 
-    if (title && genre) {
-      setMovies([...movies, { title, genre }]);
+    if (title && genre && year) {
+      setMovies([...movies, { title, genre, year}]);
     }
 
     e.target.reset();
@@ -71,6 +67,9 @@ function App() {
               <option value="Storico" className="Storico">
                 Storico
               </option>
+              <option value="Drammatico" className="Drammatico">
+                Drammatico
+              </option>
             </select>
           </div>
 
@@ -80,8 +79,18 @@ function App() {
               type="text"
               className="form"
               placeholder="Scrivi un titolo"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={searchTitle}
+              onChange={(e) => setSearchTitle(e.target.value)}
+            />
+          </div>
+          <div className="selettore">
+            <label>Cerca per anno: </label>
+            <input
+              type="text"
+              className="form"
+              placeholder="Scrivi l'anno"
+              value={searchYear}
+              onChange={(e) => setSearchYear(e.target.value)}
             />
           </div>
 
@@ -92,18 +101,21 @@ function App() {
                 className="contoll"
                 placeholder="Titolo film"
               />
-            </div>
-            <div className="selettore">
               <input
                 name="genre"
                 className="contoll"
                 placeholder="Genere film"
               />
-            </div>
+              <input
+                name="year"
+                className="contoll"
+                placeholder="Genera anno"
+              />
             <button type="submit">Aggiungi</button>
+            </div>
           </form>
           <div className="listaFilm">
-            <listaFilm movies={filteredMovies} />
+            <ListaFilm movies={filteredMovies} />
           </div>
         </div>
       </div>
