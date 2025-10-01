@@ -4,39 +4,55 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
+.containerGeneral{
+  height: 800px;
+  background-color: black;
+}
+
+.containerForm{
+  color: white;
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1{
+  color: white;
+  background-color: #000;
+}
+
+header{
+    margin: 0;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: repeating-linear-gradient(45deg,#000 0 40px, #fff 40px 80px);
   background-size: cover;
 }
 
-/* Un effetto "ciack" con barra superiore */
-.ciack {
-  width: 400px;
-  height: 300px;
-  background: #000;
-  position: relative;
-  border: 4px solid #222;
-  border-radius: 5px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-  overflow: hidden;
-}
+.selettore{
+  height: 20px;
 
-.ciack::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  left: -20px;
-  width: 450px;
-  height: 100px;
-  background: repeating-linear-gradient(
-    135deg,
-    #000 0 40px,
-    #fff 40px 80px
-  );
-  transform: rotate(-5deg);
-  border-bottom: 4px solid #222;
+}
+.Fantascienza{
+  background-color: rgb(131, 131, 255);
+  color: white;
+}
+.Thriller{
+  background-color:  rgb(246, 246, 120);
+  color: black;
+}
+.Romantico{
+  background-color: rgb(252, 115, 115);
+  color: white;
+}
+.Azione{
+  background-color: rgb(118, 248, 118);
+}
+.Storico{
+  background-color: rgb(123, 123, 123);
+  color: white;
 }

@@ -40,25 +40,24 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1>Filtra i tuoi film!!</h1>
-
-
-        <div className ="containerGeneral">
+      <div className ="containerGeneral">
+        <header>
+          <h1>Filtra i tuoi film!!</h1>
+          </header>
+        <div className ="containerForm">
           <label>Seleziona un genere: </label>
           <select
             className="selettore"
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
             <option value="">Tutti</option>
-            <option value="Fantascienza">Fantascienza</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Romantico">Romantico</option>
-            <option value="Azione">Azione</option>
-            <option value="Storico">Storico</option>
+            <option value="Fantascienza" className="Fantascienza">Fantascienza</option>
+            <option value="Thriller" className="Thriller">Thriller</option>
+            <option value="Romantico" className="Romantico">Romantico</option>
+            <option value="Azione" className="Azione">Azione</option>
+            <option value="Storico" className="Storico">Storico</option>
           </select>
-        </div>
-
+        
         <div>
           <label>Cerca per titolo: </label>
           <input
@@ -89,6 +88,7 @@ function App() {
         </form>
         
         <listaFilm movies={filteredMovies} />
+      </div>
       </div>
     </>
   );
