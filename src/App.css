@@ -56,10 +56,6 @@ input{
   margin-right: 30px;
 }
 
-.selettore{
-  display: inline-block;
-}
-
 .listaFilm{
   color: white;
   padding: 20px;
@@ -68,7 +64,6 @@ input{
 }
 
 .selettore{
-  display: flex;
   align-items: center;
   border: 2px solid white;
   padding: 20px;
@@ -92,6 +87,9 @@ input{
 .Drammatico:hover{
   color: #2a58a8;
 }
+.Aggiunto{
+  color: red;
+}
 li{
   margin: 10px;
   list-style-type: none;
@@ -100,4 +98,18 @@ li{
 li:hover{
   color: rgb(98, 98, 242);
   cursor: pointer;
+}
+
+@media screen and (max-width: 780px) {
+  .containerForm {
+    text-align: center;
+  display: block;
+  border: 0;
+  padding: 0px;
+}
+
+.selettore{
+  display: block;
+}
+  
 }
