@@ -37,7 +37,6 @@ header{
   align-items: center;
   border-bottom: 3px solid white;
   background: repeating-linear-gradient(45deg,#000 0 40px, #fff 40px 80px);
-  background-size: cover;
 }
 
 button{
