@@ -9,19 +9,15 @@ body{
 }
 
 .containerForm{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
   border: 2px solid white;
   color: white;
   padding: 30px;
-  width: 90%;
+  width: 95%;
   margin: 40px auto;
-}
-
-label{
-  padding: 20px;
 }
 
 select{
@@ -48,18 +44,26 @@ button{
   cursor: pointer;
   background-color: blue;
   color: white;
-  padding: 20px;
+  padding: 10px;
   border: 0;
   border-radius: 20px;
-  margin: 10% 40%;
+}
+button:hover{
+  background-color: rgb(255, 245, 134);
+  color: black;
+}
+
+input{
+  margin-right: 30px;
 }
 
 .selettore{
-  columns: 2;
+  display: inline-block;
 }
 
 .listaFilm{
   color: white;
+  padding: 20px;
   border: 2px solid white;
   columns: 4;
 }
@@ -67,27 +71,34 @@ button{
 .selettore{
   display: flex;
   align-items: center;
-  height: 20px;
   border: 2px solid white;
-  padding: 40px;
-  margin-top: 20px;
+  padding: 20px;
 }
-.Fantascienza{
-  background-color: #D7D1DB ;
-  color: rgb(16, 14, 14);
+
+.Fantascienza:hover{
+  color: #cea2ec ;
 }
-.Thriller{
-  background-color: #BAC1D3;
-  color: black;
+.Thriller:hover{
+  color: #c3ff00;
 }
-.Romantico{
-  background-color: #A1B9D5;
-  color: rgb(0, 0, 0);
+.Romantico:hover{
+  color: #ff0000;
 }
-.Azione{
-  background-color: #879CD3;
+.Azione:hover{
+  color: #00ffff;
 }
-.Storico{
-  background-color: #5776AD;
-  color: rgb(255, 255, 255);
+.Storico:hover{
+  color: #848484;
+}
+.Drammatico:hover{
+  color: #2a58a8;
+}
+li{
+  margin: 10px;
+  list-style-type: none;
+}
+
+li:hover{
+  color: rgb(98, 98, 242);
+  cursor: pointer;
 }
