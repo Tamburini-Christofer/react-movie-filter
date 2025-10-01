@@ -4,55 +4,90 @@
   box-sizing: border-box;
 }
 
-.containerGeneral{
-  height: 800px;
+body{
   background-color: black;
 }
 
 .containerForm{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  border: 2px solid white;
   color: white;
-  padding: 50px;
-  display: flex;
-  justify-content: space-around;
+  padding: 30px;
   width: 90%;
-  margin: 0 auto;
+  margin: 40px auto;
+}
+
+label{
+  padding: 20px;
+}
+
+select{
+  margin-left: 10px ;
 }
 
 h1{
   color: white;
   background-color: #000;
+  margin: 30px 0;
 }
 
 header{
-    margin: 0;
-  height: 100px;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 3px solid white;
   background: repeating-linear-gradient(45deg,#000 0 40px, #fff 40px 80px);
   background-size: cover;
 }
 
-.selettore{
-  height: 20px;
+button{
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  padding: 20px;
+  border: 0;
+  border-radius: 20px;
+  margin: 10% 40%;
+}
 
+.selettore{
+  columns: 2;
+}
+
+.listaFilm{
+  color: white;
+  border: 2px solid white;
+  columns: 4;
+}
+
+.selettore{
+  display: flex;
+  align-items: center;
+  height: 20px;
+  border: 2px solid white;
+  padding: 40px;
+  margin-top: 20px;
 }
 .Fantascienza{
-  background-color: rgb(131, 131, 255);
-  color: white;
+  background-color: #D7D1DB ;
+  color: rgb(16, 14, 14);
 }
 .Thriller{
-  background-color:  rgb(246, 246, 120);
+  background-color: #BAC1D3;
   color: black;
 }
 .Romantico{
-  background-color: rgb(252, 115, 115);
-  color: white;
+  background-color: #A1B9D5;
+  color: rgb(0, 0, 0);
 }
 .Azione{
-  background-color: rgb(118, 248, 118);
+  background-color: #879CD3;
 }
 .Storico{
-  background-color: rgb(123, 123, 123);
-  color: white;
+  background-color: #5776AD;
+  color: rgb(255, 255, 255);
 }

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from "react";
+import ListaFilm from "./components/ListaFilm";
+import "./App.css";
 
 const initialMovies = [
   { title: "Inception", genre: "Fantascienza" },
@@ -20,7 +21,11 @@ function App() {
   useEffect(() => {
     const result = movies
       .filter((movie) => !selectedGenre || movie.genre === selectedGenre)
-      .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      .filter(
+        (movie) =>
+          !searchTerm ||
+          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
     setFilteredMovies(result);
   }, [movies, selectedGenre, searchTerm]);
@@ -40,69 +45,69 @@ function App() {
 
   return (
     <>
-      <div className ="containerGeneral">
+      <div className="containerGeneral">
         <header>
           <h1>Filtra i tuoi film!!</h1>
-          </header>
-        <div className ="containerForm">
-          <label>Seleziona un genere: </label>
-          <select
-            className="selettore"
-            onChange={(e) => setSelectedGenre(e.target.value)}
-          >
-            <option value="">Tutti</option>
-            <option value="Fantascienza" className="Fantascienza">Fantascienza</option>
-            <option value="Thriller" className="Thriller">Thriller</option>
-            <option value="Romantico" className="Romantico">Romantico</option>
-            <option value="Azione" className="Azione">Azione</option>
-            <option value="Storico" className="Storico">Storico</option>
-          </select>
-        
-        <div>
-          <label>Cerca per titolo: </label>
-          <input
-            type="text"
-            className="form"
-            placeholder="Scrivi un titolo"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        </header>
+        <div className="containerForm">
+          <div className="selettore">
+            <label>Seleziona un genere: </label>
+            <select
+              onChange={(e) => setSelectedGenre(e.target.value)}
+            >
+              <option value="">Tutti</option>
+              <option value="Fantascienza" className="Fantascienza">
+                Fantascienza
+              </option>
+              <option value="Thriller" className="Thriller">
+                Thriller
+              </option>
+              <option value="Romantico" className="Romantico">
+                Romantico
+              </option>
+              <option value="Azione" className="Azione">
+                Azione
+              </option>
+              <option value="Storico" className="Storico">
+                Storico
+              </option>
+            </select>
+          </div>
 
-        <form onSubmit={handleAddMovie}>
-          <div>
+          <div className="selettore">
+            <label>Cerca per titolo: </label>
             <input
-              name="title"
-              className="contoll"
-              placeholder="Titolo film"
+              type="text"
+              className="form"
+              placeholder="Scrivi un titolo"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div>
-            <input
-              name="genre"
-              className="contoll"
-              placeholder="Genere film"
-            />
+
+          <form onSubmit={handleAddMovie}>
+            <div className="selettore" >
+              <input
+                name="title"
+                className="contoll"
+                placeholder="Titolo film"
+              />
+            </div>
+            <div className="selettore">
+              <input
+                name="genre"
+                className="contoll"
+                placeholder="Genere film"
+              />
+            </div>
+            <button type="submit">Aggiungi</button>
+          </form>
+          <div className="listaFilm">
+            <listaFilm movies={filteredMovies} />
           </div>
-          <button type="submit">Aggiungi</button>
-        </form>
-        
-        <listaFilm movies={filteredMovies} />
-      </div>
+        </div>
       </div>
     </>
-  );
-}
-
-function listaFilm({ movies }) {
-  return (
-    <ul>
-      {movies.map((movie, index) => (
-        <li key={index}>
-          {movie.title} - <em>{movie.genre}</em>
-        </li>
-      ))}
-    </ul>
   );
 }
 
